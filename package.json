@@ -1,0 +1,27 @@
+{
+  "name": "djms",
+  "version": "0.1.0",
+  "description": "media file response",
+  "keywords": [
+    "media",
+    "audio",
+    "video",
+    "response",
+    "media streaming"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Dongjin Oh",
+    "email": "odj0220@nate.com",
+    "url": "http://www.djcloud.co.kr/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odj0220/djms.git"
+  },
+  "dependencies": {
+    "btoa": "^1.1.2",
+    "fs": "0.0.2",
+    "jsmediatags": "^3.2.1"
+  }
+}
