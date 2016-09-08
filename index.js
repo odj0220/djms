@@ -81,11 +81,7 @@ exports.getTag = function(path, callback){
         mm(fs.createReadStream(path), function (err, metadata) {
             if( "picture" in metadata ) {
                 var image = metadata.picture[0];
-                var base64String = "";
-                for (var i = 0; i < image.data.length; i++) {
-                    base64String += String.fromCharCode(image.data[i]);
-                }
-                metadata.picture = "data:image/" + image.format + ";base64," + btoa(base64String);
+                metadata.picture = "data:image/" + image.format + ";base64," + image.data.toString('base64');
             }
             callback(err, metadata);
         });
