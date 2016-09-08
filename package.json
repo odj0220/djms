@@ -1,6 +1,6 @@
 {
   "name": "djms",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "media file response",
   "keywords": [
     "media",
@@ -20,8 +20,7 @@
     "url": "https://github.com/odj0220/djms.git"
   },
   "dependencies": {
-    "btoa": "^1.1.2",
     "fs": "0.0.2",
-    "jsmediatags": "^3.2.1"
+    "musicmetadata": "^2.0.4"
   }
 }

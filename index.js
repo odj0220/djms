@@ -1,6 +1,5 @@
 var fs = require('fs'),
-    btoa = require('btoa'),
-    jsmediatags = require("jsmediatags"),
+    mm = require('musicmetadata'),
     app = this;
 
 exports.pipe = function(req, res, path){
@@ -79,23 +78,17 @@ exports.getType = function(path){
 
 exports.getTag = function(path, callback){
     try{
-        jsmediatags.read(path, {
-            onSuccess: function(tags){
-                var tags = tags.tags;
-                if( "picture" in tags ) {
-                    var image = tags.picture;
-                    var base64String = "";
-                    for (var i = 0; i < image.data.length; i++) {
-                        base64String += String.fromCharCode(image.data[i]);
-                    }
-                    tags.picture = "data:" + image.format + ";base64," + btoa(base64String);
+        mm(fs.createReadStream(path), function (err, metadata) {
+            if( "picture" in metadata ) {
+                var image = metadata.picture[0];
+                var base64String = "";
+                for (var i = 0; i < image.data.length; i++) {
+                    base64String += String.fromCharCode(image.data[i]);
                 }
-                callback(null, tags);
-            },
-            onError: function(error){
-                callback(error, null)
+                metadata.picture = "data:image/" + image.format + ";base64," + btoa(base64String);
             }
-        })
+            callback(err, metadata);
+        });
     }catch (e){
         callback(e, null);
     }
